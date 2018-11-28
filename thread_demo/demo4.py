@@ -4,10 +4,7 @@ from urllib import request
 import os
 import re
 
-
-
-
-
+#使用一般的方法爬取下载图片
 
 def parse_page(url):
     headers = {
