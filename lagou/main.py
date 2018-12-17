@@ -38,10 +38,13 @@ def parse_positon_detail(url):
     html = etree.HTML(text)
     position_name = html.xpath('//span[@class="name"]/text()')[0] #获取职位名称
     job_request_spans = html.xpath('//dd[@class="job_request"]//span') #获取职位信息 薪资等信息
-    salary = job_request_spans[0].xpath['.//text()'][0].strip() #去除两边的空格  获取薪资信息
-    city = job_request_spans[1].xpath['.//text()'][0].strip() #去除两边的空格以及斜杠 获取城市信息
+    # salary = job_request_spans[0].xpath['.//text()'][0].strip() #去除两边的空格  获取薪资信息
+    salary = job_request_spans[0].text.strip() #去除两边的空格  获取薪资信息
+    # city = job_request_spans[1].xpath['.//text()'][0].strip() #去除两边的空格以及斜杠 获取城市信息
+    city = job_request_spans[1].text.strip() #去除两边的空格以及斜杠 获取城市信息
     city = re.sub(r"[\s/]",'',city)
-    work_years = job_request_spans[2].xpath['.//text()'][0].strip() #去除两边的空格以及斜杠 获取城市信息
+    # work_years = job_request_spans[2].xpath['.//text()'][0].strip() #去除两边的空格以及斜杠 获取城市信息
+    work_years = job_request_spans[2].text.strip() #去除两边的空格以及斜杠 获取城市信息
     work_years = re.sub(r"[\s/]]","",work_years) #获取工作年限
     education = job_request_spans[3].xpath['.//text()'][0].strip()
     education = re.sub(r"[\s/]]","",education) #获取学历
